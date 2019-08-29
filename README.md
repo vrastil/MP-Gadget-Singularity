@@ -11,7 +11,7 @@ sudo singularity build mc-gadget.sif mc-gadget.def
 ````
 ### Background
 Recipe derives from sequence of images:
- - [centos7_hpc_base](https://github.com/jose-d/easybuild-singularity-testbench/blob/master/centos7_hpc-base.def)
- - [centos7_hpc_foss-2019a](https://github.com/jose-d/easybuild-singularity-testbench/blob/master/centos7_hpc-base.def)
- - [centos7_hpc_foss-2019a_gsl](https://github.com/jose-d/easybuild-singularity-testbench/blob/master/centos7_hpc-base_gsl.def)
+ - [centos7_hpc_base](https://github.com/jose-d/container-recipes/blob/master/generic_containers/centos7_hpc-base.def)
+ - [centos7_hpc_foss-2019a](https://github.com/jose-d/container-recipes/blob/master/generic_containers/centos7_hpc_foss-2019a.def)
+ - [centos7_hpc_foss-2019a_gsl](https://github.com/jose-d/container-recipes/blob/master/generic_containers/centos7_hpc_foss-2019a_gsl.def)
 
