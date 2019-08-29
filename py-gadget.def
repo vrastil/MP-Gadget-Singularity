@@ -1,0 +1,42 @@
+BootStrap: library
+From: jose_d/default/centos7_hpc_foss-2019a_gsl_python-3.7.2_scipy
+
+%help
+    Analyse MP-Gadget using python tools from within the container.
+
+%post
+    # suppress output
+    set +v && set +x 2>&1
+
+    # load necessary modules
+    echo "Loading modules..."
+    source /etc/profile.d/lmod.sh > /dev/null 2>&1
+    source /etc/profile > /dev/null 2>&1
+    export LMOD_SHORT_TIME=86400
+    module --force purge
+    module unuse $MODULEPATH
+    module use /opt/eb/modules/all > /dev/null 2>&1
+    module load foss
+    module load GSL
+    module load Python
+    module load SciPy-bundle
+
+    # data directory -- all building should be done here
+    mkdir /data && cd /data
+
+    # get MP-Gadget
+    echo "Cloning into repository..."
+    git clone https://github.com/vrastil/MP-Gadget.git > /dev/null 2>&1 && cd MP-Gadget
+
+    # get all needed packages
+    pip3 install ipython Jupyter pandas numpy scipy matplotlib seaborn Stan PyMC3 \
+    Cython bigfile h5py mpi4py nbodykit bokeh Plotly scikit-learn statsmodels
+
+    # get basic aliases and color prompt
+    cd /data && wget -O /data/.bashrc -o /dev/null https://raw.githubusercontent.com/vrastil/Containers/master/utils/.bashrc && chmod +x /data/.bashrc
+
+%environment
+    . /data/.bashrc
+
+%runscript
+    jupyter-notebook --ip=* $@
