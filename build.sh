@@ -12,4 +12,4 @@ singularity push MP-Gadget.sif library://vrastil/default/fast_mp_gadget
 # build PY-Gadget
 sudo $(which singularity) build -F PY-Gadget.sif py-gadget.def
 singularity sign PY-Gadget.sif
-singularity push MP-Gadget.sif library://vrastil/default/py_gadget
+singularity push PY-Gadget.sif library://vrastil/default/py_gadget
