@@ -5,10 +5,13 @@ From: jose_d/default/centos7_hpc_foss-2019a_gsl
     Build and run MP-Gadget from within the container.
 
 %post
+    # suppress output
+    set +v && set +x 2>&1
+
     # load necessary modules
     echo "Loading modules..."
-    source /etc/profile.d/lmod.sh
-    module use /opt/eb/modules/all
+    source /etc/profile.d/lmod.sh > /dev/null 2>&1
+    module use /opt/eb/modules/all > /dev/null 2>&1
     module load foss
     module load GSL
 
@@ -18,13 +21,13 @@ From: jose_d/default/centos7_hpc_foss-2019a_gsl
 
     # get MP-Gadget
     echo "Cloning into repository..."
-    git clone https://github.com/MP-Gadget/MP-Gadget.git && cd MP-Gadget
-    bash bootstrap.sh
+    git clone https://github.com/vrastil/MP-Gadget.git > /dev/null 2>&1 && cd MP-Gadget
+    bash bootstrap.sh > /dev/null 2>&1
     cp Options.mk.example Options.mk
 
     # build MP-Gadget
     echo "Building..."
-    make -j $NPROCESSES
+    make -j $NPROCESSES > /dev/null 2>&1
     echo "Build finished successfully."
 
     # install
@@ -32,10 +35,10 @@ From: jose_d/default/centos7_hpc_foss-2019a_gsl
     cp gadget/MP-Gadget /usr/local/bin/
 
     # get basic aliases and color prompt
-    cd /data && wget https://raw.githubusercontent.com/vrastil/Containers/master/utils/.bashrc
+    cd /data && wget -O /data/.bashrc -o /dev/null https://raw.githubusercontent.com/vrastil/Containers/master/utils/.bashrc && chmod +x /data/.bashrc
 
 %environment
-    source /data/.bashrc
+    . /data/.bashrc
 
 %apprun genic
     echo "Running MP-Genic from the container!"
