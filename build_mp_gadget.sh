@@ -1,3 +1,4 @@
+#!/bin/bash
 # build MP-Gadget from container
 # run this script from the top-level directory (MP-GADGET)
 module load singularity

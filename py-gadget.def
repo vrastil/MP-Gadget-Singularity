@@ -29,8 +29,8 @@ From: jose_d/default/centos7_hpc_foss-2019a_gsl_python-3.7.2_scipy
     git clone https://github.com/vrastil/MP-Gadget.git > /dev/null 2>&1
 
     # get all needed packages
-    pip3 install ipython Jupyter pandas numpy scipy matplotlib seaborn Stan PyMC3 \
-    Cython bigfile h5py mpi4py nbodykit bokeh Plotly scikit-learn statsmodels
+    pip3 install ipython Jupyter pandas numpy scipy matplotlib seaborn Stan PyMC3 Cython bigfile h5py \
+    mpi4py nbodykit bokeh Plotly scikit-learn statsmodels dask[complete]
 
     # get basic aliases and color prompt
     cd /data && wget -O /data/.bashrc -o /dev/null https://raw.githubusercontent.com/vrastil/Containers/master/utils/.bashrc && chmod +x /data/.bashrc
